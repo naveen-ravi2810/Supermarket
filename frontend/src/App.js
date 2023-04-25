@@ -8,7 +8,7 @@ import Products from './Pages/Products';
 function App() {
 
   const [userId ,setuserId] = useState('');
-  console.log(userId)
+  // console.log(userId)
 
   return (
     <div className="App">

@@ -37,20 +37,21 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className='absolute top-1/2 left-0 w-full' >
       <title>Login</title>
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className="m-auto w-1/2 text-center bg-black" onSubmit={handleSubmit}>
+      <label className='block text-white font-bold mb-2 mt-4'>
         Name:
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input className='shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center' type="text" value={name} onChange={handleNameChange} />
       </label>
       <br />
-      <label>
+      <label className='block text-white font-bold mb-2 mt-4'>
         Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
+        <input className='shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center' type="password" value={password} onChange={handlePasswordChange} />
       </label>
+      <a href="/" className="flex text-red-500 ml-80">Forgot Password</a>
       <br />
-      <button type="submit">Log In</button>
+      <button className="block text-center mx-auto bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4" type="submit">Log In</button>
       {error && <div>{error}</div>}
     </form>
     </div>

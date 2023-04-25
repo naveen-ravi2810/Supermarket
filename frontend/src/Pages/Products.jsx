@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ProductBox from '../Components/ProductBox';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -65,7 +66,7 @@ function Products() {
 
   return (
     <div>
-      <h1>Products</h1>
+      <h1 className="bg-red-600 w-auto text-center text-3xl m-auto">Products</h1>
       <button onClick={handleAddProduct}>Add Product</button>
       {showAddProduct && <AddProduct onSave={handleSaveProduct} onCancel={handleCancelAddProduct} />}
       {products && products.length > 0 ? (
@@ -77,7 +78,7 @@ function Products() {
         //   ))}
         // </ul>
         <div>
-          <table>
+          <table className="w-full text-center border-red-600">
             <tr>
               <th>Product Name</th> 
               <th>Product Price</th>
@@ -85,8 +86,8 @@ function Products() {
             </tr>
             {products.map(product => (
             <tr key={product.id}>
-              <td>{product.Product_Name}</td>
-              <td>{product.Product_Price}</td>
+              <td className="bg-orange-600">{product.Product_Name}</td>
+              <td className="bg-blue-800">{product.Product_Price}</td>
             </tr>
             ))}
           </table>
@@ -94,6 +95,7 @@ function Products() {
       ) : (
         <h3>There are no products. Kindly add some.</h3>
       )}
+      <ProductBox/>
     </div>
   );
 }
@@ -121,7 +123,7 @@ function AddProduct({ onSave, onCancel }) {
 
   return (
     <div>
-      <h2>Add Product</h2>
+      <h2 className="caret-yellow-400">Add Product</h2>
       <label>
         Name:
         <input type="text" value={product_name} onChange={handleNameChange} />
