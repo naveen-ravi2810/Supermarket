@@ -2,22 +2,21 @@ import Register from './Pages/Register';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
-import { useState } from 'react';
 import ErrorPage from './Pages/ErrorPage';
 import Products from './Pages/Products';
+import New from './Pages/New';
 function App() {
 
-  const [userId ,setuserId] = useState('');
-  // console.log(userId)
 
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/' element={<Login userId={setuserId} />} />
+          <Route path='/' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
-          <Route path='/dashboard' element={<Dashboard userId = {userId}/> } />
+          <Route path='/dashboard' element={<Dashboard/> } />
           <Route path='/products' element={<Products/>} />
+          <Route path='/new' element={<New/>} />
           <Route path='*' element={<ErrorPage/>} />
         </Routes>
       </Router>

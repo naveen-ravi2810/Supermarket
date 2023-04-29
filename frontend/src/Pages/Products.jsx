@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductBox from '../Components/ProductBox';
+import Navbar from '../Components/Navbar';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -46,56 +47,23 @@ function Products() {
     });
   };
 
-  const handleDeleteProduct = (productId) => {
-    
-    fetch(`/delete_product/${productId}`, {
-      method: 'DELETE'
-    })
-    .then(response => response.json())
-    .then((data)=>{
-      alert(data.message);
-  
-
-      if (data.success) {
-        setProducts(prevProducts => prevProducts.filter(product => product.Product_Id !== productId));
-      }
-    });
-  };
   
   
 
   return (
     <div>
+      <Navbar/>
       <h1 className="bg-red-600 w-auto text-center text-3xl m-auto">Products</h1>
       <button onClick={handleAddProduct}>Add Product</button>
       {showAddProduct && <AddProduct onSave={handleSaveProduct} onCancel={handleCancelAddProduct} />}
       {products && products.length > 0 ? (
-        // <ul>
-        //   {products.map((product) => (
-        //     <li key={product.Product_Id}>
-        //       {product.Product_Name} - {product.Product_Price} - <button onClick={() => handleDeleteProduct(product.Product_Id)}>Delete</button>
-        //     </li>
-        //   ))}
-        // </ul>
-        <div>
-          <table className="w-full text-center border-red-600">
-            <tr>
-              <th>Product Name</th> 
-              <th>Product Price</th>
-              <th>Add to cart</th>
-            </tr>
-            {products.map(product => (
-            <tr key={product.id}>
-              <td className="bg-orange-600">{product.Product_Name}</td>
-              <td className="bg-blue-800">{product.Product_Price}</td>
-            </tr>
-            ))}
-          </table>
-        </div>
-      ) : (
-        <h3>There are no products. Kindly add some.</h3>
-      )}
-      <ProductBox/>
+  products.map(product => (
+    <ProductBox id={product.Product_Id}/>
+  ))
+) : (
+  <h3>There are no products. Kindly add some.</h3>
+)}
+
     </div>
   );
 }

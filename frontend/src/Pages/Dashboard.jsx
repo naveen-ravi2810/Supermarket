@@ -1,13 +1,12 @@
 import Navbar from './../Components/Navbar'
-function Dashboard({userId}) {
 
-  console.log(userId);
-
+function Dashboard() {
   return (
     <div>
-      <Navbar/>
-      <p> This is your userid {userId}</p>
+      <Navbar />
+      <p>This is your user ID:{localStorage.getItem('Name')}</p>
     </div>
-  )
+  );
 }
+
 export default Dashboard;

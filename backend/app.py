@@ -18,22 +18,20 @@ mongo_server = pymongo.MongoClient("mongodb://localhost:27017")
 users = mongo_server['users']
 users_list = users['users_list']
 # Products Database
-products = mongo_server['products']
+products = mongo_server['users']
 products_list = products['products_list']
 cart_list = products['cart_list']
-
-@app.route('/',methods=['GET'])
-def Home():
-    return jsonify({'status':'success'})
 
 @app.route('/login',methods=['POST'])
 def login():
     data = request.get_json()
-    if 'name' not in data or 'password' not in data:
-        return jsonify({'success': False, 'message': 'Name and password are required.'})
+    if data['name']==None or data['name']==""  :
+        return jsonify({'success': False, 'message': 'Name is required.'})
+    if  data['password']==None or data['password']=="":
+        return jsonify({'success': False, 'message': 'Password is required.'})
     user = users_list.find_one({'Name': data['name'], 'Password': data['password']},{'_id':0})
     if user is None:
-        return jsonify({'success': False, 'message': 'Invalid name or password.'})
+        return jsonify({'success': False, 'message': 'Invalid Name or Password.'})
     return jsonify({'success':True, 'User':user})
 
 @app.route('/create_users',methods=['POST'])
@@ -98,6 +96,11 @@ def add_to_cart(id):
         User_Id = session['User_Id']
         cart_list.insert_one({'Cart_Id':Cart_Id, 'User_Id':User_Id, 'Product_Id':Product_Id, 'Quantity':quantity})
         return jsonify({'success':True})
+    
+@app.get('/product/<id>')
+def cur_product(id):
+    product = products_list.find_one({'Product_Id':int(id)},{'_id':0})
+    return jsonify({'product_data':product})
 
 if __name__=='__main__':
     app.run(debug=True)
