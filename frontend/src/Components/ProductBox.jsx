@@ -12,13 +12,14 @@ function ProductBox(props) {
   },[]);
 
   return (
-    <div className="flex w-1/2">
-        <div className='flex h-36 w-1/2' >
-            <img src="{Product_data.Product_Url}" alt="Product_Image" />
+    <div className="flex w-1/3 border-2 m-5 rounded-2xl shadow-lg p-2" id={props.id}>  
+        <div className='flex h-36 w-1/3' >
+            <img src={Product_data.Product_url} alt="Product_Image" />
         </div>
         <div className="p-4">
-          <h4 className='text-xl'>{props.id}</h4>
-            <h2 className='text-3xl'>{Product_data.Product_Name}</h2>
+          <p className='text-xl'></p>
+            <p className='text-3xl'>{Product_data.Product_Name}</p>
+            <p className=''>Rs.{Product_data.Product_Price}</p>
         </div>
     </div>
   )

@@ -26,10 +26,11 @@ function Login() {
 
     const data = await response.json();
     if (data.success) {
-      localStorage.setItem('Name', data.User.Name);
+      localStorage.setItem('Token', data.Token);
+      sessionStorage.setItem('_e_grocery_Username', data.name);
       window.location.href = '/dashboard';
     } else {
-      setError(data.message);
+      setError(data.msg);
     }
   }
 
@@ -59,13 +60,13 @@ function Login() {
                     <input type="text" className='border-2 w-full rounded-xl h-14 p-4 outline-none' placeholder='Email address or Phone number' value={name} onChange={handleNameChange}/>
                   </div>
                   <div className='flex justify-center pt-5 mt-3 mx-3'>
-                    <input type="text" className='border-2 w-full rounded-xl h-14 p-4 outline-none ' placeholder='Password' value={password} onChange={handlePasswordChange} />
+                    <input type="password" className='border-2 w-full rounded-xl h-14 p-4 outline-none ' placeholder='Password' value={password} onChange={handlePasswordChange} />
                   </div>
                   <div className='flex justify-end mb-5 mr-3'>
                     <a href="/" className='text-blue-500 hover:text-blue-700'>Forgotten password?</a>
                   </div>
                   <div className='flex justify-center'>
-                    {error && <div className=''>{error}</div>}
+                    {error && <div className='to-black'>{error}</div>}
                   </div>
                   <div className='flex w-auto justify-center'>
                     <button className='text-2xl font-semibold border-2 bg-yellow-500 hover:bg-yellow-700 text-white w-full rounded-xl mx-5 h-14' type='submit'>Log in</button>
@@ -82,7 +83,7 @@ function Login() {
                     </div>
                   </div>
                   <div className='flex justify-center px-6 mx-5 pb-10 '>
-                    <p>Don't have an account? <a href="/register" className='text-blue-500 hover:text-blue-700'>Sign up</a></p>
+                    <p>Don't have an account? <a href="/register" className='text-blue-500 hover:text-blue-700' onClick={fn_register}>Sign up</a></p>
                   </div>
                 </form>
               </div>

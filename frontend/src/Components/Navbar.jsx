@@ -1,7 +1,7 @@
 // import React, {useState} from 'react'
 
 function fn_logout(){
-  localStorage.removeItem('Name');
+  localStorage.removeItem('Token');
   window.location.href = '/';
 }
 
