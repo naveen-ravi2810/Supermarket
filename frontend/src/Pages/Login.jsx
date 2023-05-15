@@ -63,7 +63,7 @@ function Login() {
                     <input type="password" className='border-2 w-full rounded-xl h-14 p-4 outline-none ' placeholder='Password' value={password} onChange={handlePasswordChange} />
                   </div>
                   <div className='flex justify-end mb-5 mr-3'>
-                    <a href="/" className='text-blue-500 hover:text-blue-700'>Forgotten password?</a>
+                    <a href="/forgot_password" className='text-blue-500 hover:text-blue-700' >Forgotten password?</a>
                   </div>
                   <div className='flex justify-center'>
                     {error && <div className='to-black'>{error}</div>}

@@ -1,0 +1,46 @@
+add_product : Post : Token Required(Seller)
+    product_name
+    product_price
+    product_mrp
+    product_url
+    product_description
+    product_quantity
+------------------------------------------------------
+login : Post 
+    name
+    password
+-----------------------------------------------------
+create_users : Post 
+    name
+    email
+    phone
+    Password
+-------------------------------------------------------
+view_users : Get : Token Required(Admin)
+-------------------------------------------------------
+view_sellers : Get : Token Required(Admin)
+-------------------------------------------------------
+products : Get 
+-------------------------------------------------------
+convert_to_seller/<id> : Post : Token Required(Admin)
+    --Send User Id with URL--
+-------------------------------------------------------
+product/<id> : Get
+-------------------------------------------------------
+confirm_email : Get 
+        Otp send to email which is valid for 3 minutes
+-------------------------------------------------------
+confirm_email_by_otp : Post  
+    otp             Then the Email_verification turns to True
+--------------------------------------------------------
+get_mail_for_otp : Post   
+    name            ('Email,Name,Phone can be given)  for resetting Password
+--------------------------------------------------------
+check_otp : Post
+    otp 
+    email
+-----------------------------------------------------------
+change_password : Post
+    email
+    new_password
+-----------------------------------------------------------

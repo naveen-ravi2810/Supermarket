@@ -5,6 +5,7 @@ import Dashboard from './Pages/Dashboard';
 import ErrorPage from './Pages/ErrorPage';
 import Products from './Pages/Products';
 import New from './Pages/New';
+import ForgotPassword from './Pages/ForgotPassword';
 function App() {
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/> } />
           <Route path='/products' element={<Products/>} />
           <Route path='/new' element={<New/>} />
+          <Route path='/forgot_password' element={<ForgotPassword/>}/>
           <Route path='*' element={<ErrorPage/>} />
         </Routes>
       </Router>
