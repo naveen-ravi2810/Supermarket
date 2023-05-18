@@ -86,6 +86,8 @@ def createusers():
         return jsonify({"msg":"UserName Already Exist"})
     if users_list.find_one({'Email':email}):
         return jsonify({"msg":"Email Already Exist"})
+    # if functions.check_email_validity(email) == False:
+        # return jsonify({'msg':"Invalid or Inactive status"})
     if users_list.find_one({'Phone':phone}):
         return jsonify({"msg":"Phone Number Already Exist"})
     users_list.insert_one({
@@ -98,12 +100,19 @@ def createusers():
         })
     return jsonify({'success':True}), 201
 
+
+#delevoper console API
+@app.route('/all_users')
+def all_users():
+    users = list(users_list.find({},{"_id":0, "Password":0, "otp":0}))
+    return jsonify({'all_users':users})
+
 #View user API
 @app.route("/view_users")
 @token_required
 def view_users(user_credential):
     if user_credential['userType'] == "Admin":
-        users = list(users_list.find({"userType":"User"},{"_id":0, "Password":0}))
+        users = list(users_list.find({"userType":"User"},{"_id":0, "Password":0, "otp":0}))
         return jsonify({'users':users})
     return jsonify({"msg":"Invalid Access"})
 
@@ -112,8 +121,8 @@ def view_users(user_credential):
 @token_required
 def view_seller(user_credential):
     if user_credential['userType'] == "Admin":
-        users = list(users_list.find({"userType":"Seller"},{"_id":0, "Password":0}))
-        return jsonify({'users':users})
+        sellers = list(users_list.find({"userType":"Seller"},{"_id":0, "Password":0}))
+        return jsonify({'sellers':sellers})
     return jsonify({"msg":"Invalid Access"})
 
 # Products API    
@@ -250,6 +259,22 @@ def confirm_mail_by_otp(user_credential):
             return jsonify({'msg':"Otp expired"})
     else:
         return jsonify({"msg":"Otp incorrect"})
+    
+# Existing user for forgot password
+@app.post('/exist_user')
+def exist_user():
+    data = request.get_json()
+    find_exist_user = users_list.find_one({
+        '$or': [
+        {'Name': data['email']},
+        {'Email': data['email']},
+        {'Phone': data['email']}
+        ]
+    }, {'_id': 0})
+    if find_exist_user:
+        return jsonify({'status':True, 'msg':'User Found'})
+    else:
+        return jsonify({'status':False, 'msg':'User Not Found'}), 401
 
 #Running the App
 if __name__=='__main__':

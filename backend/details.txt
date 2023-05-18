@@ -44,3 +44,6 @@ change_password : Post
     email
     new_password
 -----------------------------------------------------------
+
+
+used zerobounce for email validity

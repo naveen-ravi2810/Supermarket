@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState} from 'react';
 
 function Register() {
 
@@ -21,6 +21,8 @@ function Register() {
                 const data = await response.json();
                 if (data.success) {
                         window.location.href='/';
+                } else{
+                        setError(data.msg);
                 }
         }
         else {
@@ -31,7 +33,7 @@ function Register() {
 
   return (
     <div className='h-screen bg-gray-200 flex items-center justify-center'>
-        <div className=' bg-white rounded-2xl px-10 mx-5'>
+        <div className=' bg-white rounded-2xl md:px-28 px-10 mx-5'>
            <form onSubmit={handleSubmit}>
                 <div className='flex items-center justify-center'>
                         <h1 className='text-5xl mt-5 text-blue-500 font-extrabold'>E-Grocery</h1>

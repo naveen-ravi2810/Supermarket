@@ -6,8 +6,11 @@ import ErrorPage from './Pages/ErrorPage';
 import Products from './Pages/Products';
 import New from './Pages/New';
 import ForgotPassword from './Pages/ForgotPassword';
+
+
 function App() {
 
+  const token = localStorage.getItem['Token']
 
   return (
     <div className="App">
